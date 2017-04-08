@@ -226,6 +226,7 @@
             {
                 this.dots.callAll('revive');
             }
+            
 
         },
 
@@ -251,6 +252,30 @@
             }
 
         }
+        
+        function Timer() {
+        
+ 		this.time_diff = 0;
+ 		this.time_start = 0;
+ 		this.time_stop = 0;
+ 		this.start = function() {
+ 			this.time_start = new Date().getTime();
+ 		}
+		this.stop = function() {
+ 			this.time_stop = new Date().getTime();
+ 			this.time_diff += this.time_stop - this.time_start;
+ 			this.time_stop = 0;
+			this.time_start = 0;
+ 		}
+ 		this.reset = function() {
+ 			this.time_diff = 0;
+ 			this.time_start = 0;
+ 			this.time_stop = 0;
+ 		}
+ 		this.get_time_diff = function() {
+ 			return this.time_diff;
+ 		}
+ 	}
 
     };
 
