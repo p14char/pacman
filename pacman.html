@@ -67,7 +67,7 @@
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
             
-            this.load.image('life' , 'assets/heart_PNG706.png');
+            //this.load.image('life' , 'assets/heart_PNG706.png');
 
             //  Needless to say, graphics (C)opyright Namco
 
@@ -75,7 +75,7 @@
 
         create: function () {
             
-            this.layer = this.map.createLayer('life');
+            //this.layer = this.map.createLayer('life');
             
             this.map = this.add.tilemap('map');
             this.map.addTilesetImage('pacman-tiles', 'tiles');
