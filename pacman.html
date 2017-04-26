@@ -13,7 +13,7 @@
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
 </head>
 <body>
-    <div>Score:</div>
+    
     <script type="text/javascript">
 
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
@@ -223,8 +223,6 @@
         eatDot: function (pacman, dot) {
 
             dot.kill();
-            
-            eatmax++;
 
             if (this.dots.total === 0)
             {
