@@ -239,6 +239,10 @@
             dot.kill();
             score += 1;
             scoreTxt.text = 'Score : ' + score;
+            
+            var audio = new Audio('assets/coin_pickup.mp3');
+            audio.play();
+            
             if (this.dots.total === 0)
             {
                 this.dots.callAll('revive');
