@@ -25,7 +25,7 @@
     var score =0;
     var scoreTxt;
         
-    var life=0;
+    var life=3;
     var lifeTxt;
     
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
@@ -116,7 +116,7 @@
             this.move(Phaser.LEFT);
             
             scoreTxt = game.add.text(5, 0,'Score: 0', {font: '20px Arial',  fill: '#FFFFFF'});
-            lifeTxt = game.add.text(360, 0,'Life: 0', {font: '20px Arial',  fill: '#FFFFFF'});
+            lifeTxt = game.add.text(400, 0,'Life: 3', {font: '20px Arial',  fill: '#FFFFFF'});
 
         },
 
