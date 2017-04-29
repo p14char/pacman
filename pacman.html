@@ -80,6 +80,7 @@
             this.load.crossOrigin = 'anonymous';
 
             this.load.image('dot', 'assets/dot.png');
+            this.load.image('dot2', 'assets/dot2.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
@@ -98,7 +99,8 @@
             this.dots = this.add.physicsGroup();
             
             this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
-
+            
+            this.map.createFromTiles(15, this.safetile, 'dot2', this.layer, this.dots);
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.dots.setAll('x', 6, false, false, 1);
             this.dots.setAll('y', 6, false, false, 1);
@@ -256,12 +258,25 @@
 
         },
         
+        
+        eatDot2: function (pacman, dot) {
+
+            dot.kill();
+            bonus += 10;
+            bonusTxt.text = 'Bonus : ' + bonus;
+            
+            var audio = new Audio('assets/coin_pickup.mp3');
+            audio.play()
+            
+        },
 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
-
+            
+            this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot2, null, this);
+            
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
 
