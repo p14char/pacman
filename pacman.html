@@ -24,6 +24,9 @@
     
     var score =0;
     var scoreTxt;
+    
+    var bonus=0;
+    var bonusTxt;
         
     var life=3;
     var lifeTxt;
@@ -115,7 +118,8 @@
             this.move(Phaser.LEFT);
             
             scoreTxt = game.add.text(30, 0,'Score: 0', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
-            lifeTxt = game.add.text(300, 0,'Life: 3', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
+            bonusTxt = game.add.text(80,'Bonus: 0', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
+            lifeTxt = game.add.text(250,'Life: 3', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
 
         },
 
