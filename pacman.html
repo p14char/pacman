@@ -107,6 +107,8 @@
             this.dots.setAll('x', 6, false, false, 1);
             this.dots.setAll('y', 6, false, false, 1);
             
+            this.dots2.setAll('x', 6, false, false, 1);
+            this.dots2.setAll('y', 6, false, false, 1);
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
 
@@ -277,7 +279,7 @@
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
             
-            this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot2, null, this);
+            this.physics.arcade.overlap(this.pacman, this.dots2, this.eatDot2, null, this);
             
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
