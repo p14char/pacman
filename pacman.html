@@ -271,9 +271,15 @@
             
            var audio = new Audio('assets/bonus.mp3');
            audio.play()
-            
+           
+           if (this.dots.total === 0)
+           {
+               this.dots.callAll('revive');
+           }
+           
         },
 
+        
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
