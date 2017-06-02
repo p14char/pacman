@@ -36,7 +36,7 @@
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
     
 	    var timer;
-	    var totalTime = 59;
+	    var totalTime = 60;
 	    
     var Pacman = function (game) {
 	
@@ -151,6 +151,11 @@
 				totalTime = 0;
 				this.pacman.destroy();
 				this.GameOver = game.add.text(320, 15, 'GAME OVER', {fontSize: '15px Verdana', fill: 'white'});
+				timer.stop();
+			}
+			if (totalTime == 0) {
+				this.pacman.destroy();
+				this.GameOver = game.add.text(180, 150, 'GAME OVER', {fontSize: '15px Verdana', fill: 'white'});
 				timer.stop();
 			}
 		}
