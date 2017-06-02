@@ -130,13 +130,14 @@
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
             
-	    livesText = game.add.text(30, 0, ' 3', {font: '20px Arial Black', fill: 'white'});			//display lives
-            scoreText = game.add.text(120, 0, 'Score: 0', {font: '20px Arial Black', fill: 'white'});		//display score
-            bonusText = game.add.text(220, 0, 'Bonus: 0', {font: '20px Arial Black', fill: 'white'});		//display bonus score
-	    this.timeText = game.add.text(320, 5, totalTime, { fontSize: '20px ', fill: 'white' });
-			timer = game.time.create(false);//  Create our Timer
-			timer.loop(1000, this.updateCounter, this);//  Set a TimerEvent to occur after 2 seconds			
-			timer.start(); //  Start the timer running - this is important!//  It won't start automatically, allowing you to hook it to button events and the like.
+	    livesText = game.add.text(30, 0, ' 3', {font: '15px Arial Black', fill: 'white'});			//display lives
+            scoreText = game.add.text(100, 0, 'Score: 0', {font: '15px Arial Black', fill: 'white'});		//display score
+            bonusText = game.add.text(200, 0, 'Bonus: 0', {font: '15px Arial Black', fill: 'white'});		//display bonus score
+	    this.timeText = game.add.text(300, 5, totalTime, { fontSize: '15px ', fill: 'white' });
+	    
+	    timer = game.time.create(false);//  Create our Timer
+	    timer.loop(1000, this.updateCounter, this);//  Set a TimerEvent to occur after 2 seconds
+	    timer.start(); //  Start the timer running - this is important!//  It won't start automatically, allowing you to hook it to button events and the like.
         },
 	
 	updateCounter: function () {
