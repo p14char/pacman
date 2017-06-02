@@ -131,9 +131,9 @@
             this.move(Phaser.LEFT);
             
 	    livesText = game.add.text(30, 0, 'Life: 3', {font: '15px Verdana', fill: 'white'});			//display lives
-            scoreText = game.add.text(100, 0, 'Score: 0', {font: '15px Verdana', fill: 'white'});		//display score
-            bonusText = game.add.text(200, 0, 'Bonus: 0', {font: '15px Verdana', fill: 'white'});		//display bonus score
-	    this.timeText = game.add.text(250, 0, totalTime, { fontSize: '15px ', fill: 'white' });
+            scoreText = game.add.text(120, 0, 'Score: 0', {font: '15px Verdana', fill: 'white'});		//display score
+            bonusText = game.add.text(220, 0, 'Bonus: 0', {font: '15px Verdana', fill: 'white'});		//display bonus score
+	    this.timeText = game.add.text(300, 0, totalTime, { fontSize: '15px ', fill: 'white' });
 	    
 	    timer = game.time.create(false);//  Create our Timer
 	    timer.loop(1000, this.updateCounter, this);//  Set a TimerEvent to occur after 2 seconds
@@ -146,7 +146,7 @@
 		}
 		else {
 			this.lives--;
-			totalTime = 59;
+			totalTime = 60;
 			if (this.lives == 0) {
 				totalTime = 0;
 				this.pacman.destroy();
