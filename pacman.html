@@ -26,17 +26,18 @@
      
     var lives = 3;
     var livesText = '';
+    
     var score = 0;
     var scoreText = '';
         
     var bonusScore = 0;
     var bonusText = '';
  
-    var timer;
-    var totalTime = 59;  
-     
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
-
+    
+	    var timer;
+	    var totalTime = 59;
+	    
     var Pacman = function (game) {
 	
         this.map = null;
@@ -110,8 +111,8 @@
             this.dots.setAll('x', 6, false, false, 1);
             this.dots.setAll('y', 6, false, false, 1);
             
-            this.dots2.setAll('x', 6, false, false, 1);
-            this.dots2.setAll('y', 6, false, false, 1);
+            //this.dots2.setAll('x', 6, false, false, 1);
+            //this.dots2.setAll('y', 6, false, false, 1);
 	    
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
@@ -137,7 +138,22 @@
 			timer.loop(1000, this.updateCounter, this);//  Set a TimerEvent to occur after 2 seconds			
 			timer.start(); //  Start the timer running - this is important!//  It won't start automatically, allowing you to hook it to button events and the like.
         },
-
+	
+	updateCounter: function () {
+		if (totalTime > 0) {
+			totalTime--;
+		}
+		else {
+			this.lives--;
+			totalTime = 59;
+			if (this.lives == 0) {
+				totalTime = 0;
+				this.pacman.destroy();
+				this.GameOver = game.add.text(220, 20, 'GAME OVER', {fontSize: '22px', fill: 'red'});
+				timer.stop();
+			}
+		}
+	},
         checkKeys: function () {
 
             if (this.cursors.left.isDown && this.current !== Phaser.LEFT)
@@ -255,11 +271,12 @@
         eatDot: function (pacman, dot) {
 
             dot.kill();
-            score ++;
-            scoreText.text = 'Score: ' + score;
             
             var audio = new Audio('assets/coin_pickup.mp3');
             audio.play()
+	    
+	    score ++;
+            scoreText.text = 'Score: ' + score;
             
 	    if ( score === ( Math.floor( Math.random() * 6 ) +49 ) )
             	this.bonusDots.callAll('kill');
@@ -271,23 +288,26 @@
             if (this.dots.total === 0)
             {
                 this.dots.callAll('revive');
+		this.dots2.callAll('revive');
             }
 
         },
         
         
-       eatDot2: function (pacman, dots2) {
+       eatDot2: function (pacman, dot2) {
 
            dot2.kill();
-  	   bonusScore += 10;
- 	   bonusText.text = 'Bonus: ' + bonusScore;
 	   
            var audio = new Audio('assets/bonus.mp3');
            audio.play()
+	   
+	   bonusScore += 10;
+ 	   bonusText.text = 'Bonus: ' + bonusScore;
            
-           if (this.dots.total === 0)
+           if (this.dots2.total === 0)
            {
-               this.dots2.callAll('revive');
+		    lives ++;
+		    livesText.text = ' ' + lives;
            }
            
         },
@@ -298,7 +318,7 @@
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
             
-            this.physics.arcade.overlap(this.pacman, this.dot2, this.eatDot2, null, this);
+            this.physics.arcade.overlap(this.pacman, this.dots2, this.eatDot2, null, this);
             
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
