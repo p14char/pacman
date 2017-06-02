@@ -27,7 +27,18 @@
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 
     var Pacman = function (game) {
-
+	
+	this.score = 0;										//arxikop score
+	this.scoreText = null;
+		
+	var lives = 3;       								//arxikop life
+	var livesText;
+		
+	var chance;
+		
+	this.time = 0;
+	this.scoreTime = null;
+	
         this.map = null;
         this.layer = null;
         this.pacman = null;
@@ -46,11 +57,6 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
-        
-        this.score = 0; //gia to score 
-	    this.scoreText = null; //gia to text tou score
-        this.health = 50; //gia to health
-        this.healthText = null; //gia to text tou health
 
     };
 
@@ -106,6 +112,7 @@
             
             this.dots2.setAll('x', 6, false, false, 1);
             this.dots2.setAll('y', 6, false, false, 1);
+	    
             //  Pacman should collide with everything except the safe tile
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
 
@@ -122,30 +129,15 @@
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
             
-            this.scoreText = game.add.text(320,250, "Score: " + this.score,
-                    { font: "12px Gabriella", 
-                      fill: "#ffffff" 
-                    }); 
-            
-            this.healthText = game.add.text(275,45, "Health: " + this.health,
-                    { font: "12px Gabriella", 
-                      fill: "#ffffff" 
-                    });
-                    
-            this.physics.arcade.enable(this.dots2);
-            
-             
-            game.time.events.loop(Phaser.Timer.SECOND * 5,createRandom,this); //to loop parapempei sto oti tha ginei loopa olo auto kai malista kathe 5 seconds tha kaleitai h createRandom sunarthsh
-
-                function createRandom(){
-                    this.dots2.create(200 + Math.random() * 200 , 86 ,'dots2');
-
-
-                } //h random sunarthsh pou tha paragei ta tuxaia shmeia sta opoia tha kanoun spawn ta hppotions
-
-                function destroySprite(dots2) {
-                        this.dots2.destroy();
-                    } //destroy sunarthsh pou tha katastrefei ta dots2 pou exoun dhmiourgithei(den exei ginei praksh akoma)
+	    // Score
+	    this.scoreText = game.add.text(70, 4, "Score: " + this.score, { fontSize: "16px", fill: "#49311c" });
+	    
+	    // Time
+	    this.scoreTime = game.add.text(250, 4, "Seconds: " + Math.floor(this.game.time.totalElapsedSeconds()), { fontSize: "16px", fill: "#49311c" });
+	    
+	    //Life
+	    livesText = game.add.text(475, 4, "Lives: 3", {fontSize: "16px",  fill: "#49311c"});
+			 
         },
 
         checkKeys: function () {
@@ -274,7 +266,16 @@
             {
                 this.dots.callAll('revive');
             }
-            
+	    
+	    chance = Math.floor((Math.random() * 100) + 1);
+	    
+	    if (chance >= 96){	
+		setTimeout(function(){
+			dot.revive();
+		},2000);
+	} 
+
+
 
         },
         
@@ -282,7 +283,7 @@
        eatDot2: function (pacman, dots2) {
 
            dot2.kill();
-           this.health += 10;
+           this.score += 10;
             
            var audio = new Audio('assets/bonus.mp3');
            audio.play()
