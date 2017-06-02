@@ -38,7 +38,7 @@
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
     
 	    var timer; // dilwsi metavlitis timer
-	    var totalTime = 120; // dilwsi metavlitis sinolikou xronou pou einai 2 lepta
+	    var totalTime = 60; // dilwsi metavlitis sinolikou xronou pou einai 1 lepto
 	    
     var Pacman = function (game) {
 	
@@ -153,7 +153,8 @@
 			}
 			else { //otan ginei 0
 				this.pacman.destroy(); //destroy pacman
-				this.GameOver = game.add.text(320, 250, 'GAME OVER', {fontSize: '15px Verdana', fill: 'white'}); //emfanise to gameover
+				this.GameOver = game.add.text(200, 120, 'GAME OVER', {fontSize: '15px Verdana', fill: 'white'}); //emfanise to gameover
+				scoreText = game.add.text(200, 150, 'Score: 0', {font: '15px Verdana', fill: 'white'}); //to score 
 				timer.stop(); //stamata to xrono
 			}
 
@@ -282,7 +283,7 @@
             var audio = new Audio('assets/coin_pickup.mp3');
             audio.play()
 	    
-	    score ++; //afkise to score kata 1
+	    score ++; //afksise to score kata 1
             scoreText.text = 'Score: ' + score; //emfanise to 
 	    
             if (this.dots.total === 0)
@@ -303,6 +304,7 @@
 	   // ekkinisi ixou otan piasei ena bonus
 	   bonusScore += 10; //prosthese to bonus kata 10
  	   bonusText.text = 'Bonus: ' + bonusScore; //emfanise to 
+           scoreText.text = 'Score: ' + bonusScore; //emfanise to 
 	   
 	    //random gia ta bonus 
 	    if ( score === ( Math.floor( Math.random() * 6 ) +49 ) )
