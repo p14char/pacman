@@ -34,6 +34,8 @@
 	    var bonusText = '';// dilwsi text gia bonus
 	    
 	    var GameOver ='';// dilwsi tou text game over
+	    var finalScore = 0;
+	    var finalScoreText='';
 	    
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
     
@@ -153,8 +155,9 @@
 			}
 			else { //otan ginei 0
 				this.pacman.destroy(); //destroy pacman
+				this.finalScore = score + scoreBonus;
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '30px Verdana', fill: 'red'}); //emfanise to gameover
-				scoreText = game.add.text(180, 260, 'Score: ' + score + scoreBonus, {font: '25px Verdana', fill: 'white'}); //to score 
+				finalScoreText = game.add.text(180, 260, 'Score: ' + finalScore, {font: '25px Verdana', fill: 'white'}); //to score 
 				timer.stop(); //stamata to xrono
 			}
 
