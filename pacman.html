@@ -322,8 +322,8 @@
            }
            
         },
-
-        
+			
+	
         update: function () {
 	
 		this.timeText.text = totalTime; //update to timer
@@ -352,9 +352,15 @@
         }
     
 
-    };
+    },
 
     game.state.add('Game', Pacman, true);
+
+	ReloadPage : function (){
+		
+		location.reload();
+		
+	};
 
     </script>
 
