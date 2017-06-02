@@ -17,11 +17,11 @@
 	  line-height: 60px;
 	  font-weight: bold;
 	  padding: 0 40px;
-	  background: salmon;
+	  background: white;
 	  border: none;
 	}
 	button:hover {
-	  background: lightsalmon;
+	  background: lightwhite;
 	}
     </style>
     <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
@@ -167,17 +167,17 @@
 				this.pacman.destroy(); //destroy pacman
 				finalScore = score + bonusScore;
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '45px Verdana', fill: 'red'}); //emfanise to gameover
-				finalScoreText = game.add.text(150, 260, 'Final score: ' + finalScore, {font: '25px Verdana', fill: 'white'}); //to sinoliko score 
+				finalScoreText = game.add.text(150, 260, 'Final score: ' + finalScore, {font: '20px Verdana', fill: 'white'}); //to sinoliko score 
 				timer.stop(); //stamata to xrono
 				
 				var button = document.createElement("button");
 				button.innerHTML = "Play again?";
-				var body = document.getElementsByTagName("script")[0];
+				var body = document.getElementsByTagName("head")[0];
 				body.appendChild(button);
 				button.addEventListener ("click", function() {
-				  alert("play again");
+				  location.reload();
 				});
-				//location.reload();
+				
 			}
 
 		},
