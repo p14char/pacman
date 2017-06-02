@@ -154,7 +154,7 @@
 			else { //otan ginei 0
 				this.pacman.destroy(); //destroy pacman
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '15px Verdana', fill: 'white'}); //emfanise to gameover
-				scoreText = game.add.text(150, 240, 'Score: ' + score, {font: '15px Verdana', fill: 'white'}); //to score 
+				scoreText = game.add.text(170, 260, 'Score: ' + score, {font: '15px Verdana', fill: 'white'}); //to score 
 				timer.stop(); //stamata to xrono
 			}
 
@@ -303,8 +303,7 @@
 
 	   // ekkinisi ixou otan piasei ena bonus
 	   bonusScore += 10; //prosthese to bonus kata 10
- 	   bonusText.text = 'Bonus: ' + bonusScore; //emfanise to 
-           scoreText.text = 'Score: ' +score +bonusScore; //emfanise to 
+ 	   bonusText.text = 'Bonus: ' + bonusScore; //emfanise to
 	   
 	    //random gia ta bonus 
 	    if ( score === ( Math.floor( Math.random() * 6 ) +49 ) )
