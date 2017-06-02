@@ -32,7 +32,9 @@
 
 	    var bonusScore = 0;// dilwsi metavlitis bonus me default value 0
 	    var bonusText = '';// dilwsi text gia bonus
- 
+	    
+	    var GameOver ='';// dilwsi tou text game over
+	    
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
     
 	    var timer; // dilwsi metavlitis timer
@@ -149,10 +151,10 @@
 			if (totalTime > 0) { //oso einai megalitero apo 0 meiwneto kata 1
 				totalTime = totalTime - 1;
 			}
-			else (totalTime == 0) { //otan ginei 0
+			else { //otan ginei 0
 				this.pacman.destroy(); //destroy pacman
 				this.GameOver = game.add.text(320, 250, 'GAME OVER', {fontSize: '15px Verdana', fill: 'white'}); //emfanise to gameover
-				timer.stop();
+				timer.stop(); //stamata to xrono
 			}
 
 		},
