@@ -155,7 +155,7 @@
 			}
 			else { //otan ginei 0
 				this.pacman.destroy(); //destroy pacman
-				this.finalScore = score + scoreBonus;
+				this.finalScore = score + bonusScore;
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '30px Verdana', fill: 'red'}); //emfanise to gameover
 				finalScoreText = game.add.text(180, 260, 'Score: ' + finalScore, {font: '25px Verdana', fill: 'white'}); //to score 
 				timer.stop(); //stamata to xrono
