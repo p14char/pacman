@@ -157,9 +157,11 @@
 				this.pacman.destroy(); //destroy pacman
 				finalScore = score + bonusScore;
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '45px Verdana', fill: 'red'}); //emfanise to gameover
-				finalScoreText = game.add.text(150, 260, 'Score: ' + finalScore, {font: '30px Verdana', fill: 'white'}); //to score 
+				finalScoreText = game.add.text(150, 260, 'Final score: ' + finalScore, {font: '30px Verdana', fill: 'white'}); //to sinoliko score 
 				timer.stop(); //stamata to xrono
-				location.reload();
+				<button id="again">play again?</button>
+				if (#again){
+				location.reload(); // epanekkinise to pexnidi}
 			}
 
 		},
