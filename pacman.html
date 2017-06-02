@@ -23,15 +23,6 @@
     </audio>
     
     <script type="text/javascript">
-    
-    var score =0;
-    var scoreTxt;
-    
-    var bonus=0;
-    var bonusTxt;
-        
-    var life=3;
-    var lifeTxt;
      
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
 
@@ -55,6 +46,11 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
+        
+        this.score = 0; //gia to score 
+	    this.scoreText = null; //gia to text tou score
+        this.health = 50; //gia to health
+        this.healthText = null; //gia to text tou health
 
     };
 
@@ -81,6 +77,7 @@
 
             this.load.image('dot', 'assets/dot.png');
             this.load.image('dot2', 'assets/dot2.png');
+            
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('pacman', 'assets/pacman.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map.json', null, Phaser.Tilemap.TILED_JSON);
@@ -98,7 +95,7 @@
 
             this.dots = this.add.physicsGroup();
             this.dots2 = this.add.physicsGroup();
-            
+             
             this.map.createFromTiles(7, this.safetile, 'dot', this.layer, this.dots);
             
             this.map.createFromTiles(35, this.safetile, 'dot2', this.layer, this.dots2);
@@ -125,10 +122,30 @@
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
             
-            scoreTxt = game.add.text(30, 0,'Score: 0', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
-            bonusTxt = game.add.text(190,0,'Bonus: 0', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
-            lifeTxt = game.add.text(330,0,'Life: 3', {font: '20px 	Lucida Console',  fill: '#FFFFFF'});
+            this.scoreText = game.add.text(320,250, "Score: " + this.score,
+                    { font: "12px Gabriella", 
+                      fill: "#ffffff" 
+                    }); 
+            
+            this.healthText = game.add.text(275,45, "Health: " + this.health,
+                    { font: "12px Gabriella", 
+                      fill: "#ffffff" 
+                    });
+                    
+            this.physics.arcade.enable(this.dots2);
+            
+             
+            game.time.events.loop(Phaser.Timer.SECOND * 5,createRandom,this); //to loop parapempei sto oti tha ginei loopa olo auto kai malista kathe 5 seconds tha kaleitai h createRandom sunarthsh
 
+                function createRandom(){
+                    this.dots2.create(200 + Math.random() * 200 , 86 ,'dots2');
+
+
+                } //h random sunarthsh pou tha paragei ta tuxaia shmeia sta opoia tha kanoun spawn ta hppotions
+
+                function destroySprite(dots2) {
+                        this.dots2.destroy();
+                    } //destroy sunarthsh pou tha katastrefei ta dots2 pou exoun dhmiourgithei(den exei ginei praksh akoma)
         },
 
         checkKeys: function () {
@@ -248,8 +265,7 @@
         eatDot: function (pacman, dot) {
 
             dot.kill();
-            score += 1;
-            scoreTxt.text = 'Score : ' + score;
+            this.score += 1;
             
             var audio = new Audio('assets/coin_pickup.mp3');
             audio.play()
@@ -263,12 +279,10 @@
         },
         
         
-       eatDot2: function (pacman, dot2) {
+       eatDot2: function (pacman, dots2) {
 
            dot2.kill();
-           bonus += 10;
-           bonusTxt.text = 'Bonus : ' + bonus;
-           scoreTxt.text = 'Score : ' + bonus;
+           this.health += 10;
             
            var audio = new Audio('assets/bonus.mp3');
            audio.play()
