@@ -35,8 +35,8 @@
  
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
     
-	    var timer;
-	    var totalTime = 60;
+    var timer;
+    var totalTime = 60;
 	    
     var Pacman = function (game) {
 	
@@ -133,16 +133,16 @@
 	    livesText = game.add.text(30, 0, 'Life: 3', {font: '15px Verdana', fill: 'white'});			//display lives
             scoreText = game.add.text(120, 0, 'Score: 0', {font: '15px Verdana', fill: 'white'});		//display score
             bonusText = game.add.text(220, 0, 'Bonus: 0', {font: '15px Verdana', fill: 'white'});		//display bonus score
-	    this.timeText = game.add.text(300, 0, totalTime, { fontSize: '15px ', fill: 'white' });
+	    this.timeText = game.add.text(320, 0, totalTime, { fontSize: '15px ', fill: 'white' });
 	    
-	    timer = game.time.create(false);//  Create our Timer
-	    timer.loop(1000, this.updateCounter, this);//  Set a TimerEvent to occur after 2 seconds
-	    timer.start(); //  Start the timer running - this is important!//  It won't start automatically, allowing you to hook it to button events and the like.
+	    timer = game.time.create(false);//  Dimiourgia tou timer
+	    timer.loop(1000, this.updateCounter, this);//  rithmise to timer gia 2 defterolepta
+	    timer.start(); 
         },
 	
 	updateCounter: function () {
 		if (totalTime > 0) {
-			totalTime--;
+			totalTime = totalTime - 1;
 		}
 		else {
 			this.lives--;
