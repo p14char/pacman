@@ -47,6 +47,9 @@
 	    var finalScore = 0; //dilwsi telikou score (score + bonusScore)
 	    var finalScoreText=''; //dilwsi tou text final score
 	    
+	    var timewin = 0;
+	    var timeWinText= '';
+	    
     var game = new Phaser.Game(448, 496, Phaser.AUTO);
     
 	    var timer; // dilwsi metavlitis timer
@@ -324,7 +327,20 @@
 	    
             if (this.dots.total === 0)
             {
-                this.dots.callAll('revive');
+	    	this.pacman.destroy(); //destroy pacman
+                finalScore = score + bonusScore;
+		timewin = totalTime;
+		this.GameOver = game.add.text(150, 220, 'YOU WIN', {fontSize: '45px Verdana', fill: 'red'}); //emfanise to win
+		finalScoreText = game.add.text(150, 260, 'Final score: ' + finalScore, {font: '20px Verdana', fill: 'white'}); //to sinoliko score 
+		timeWinText = game.add.text(150, 280, 'Time: ' + timewin, {font: '15px Verdana', fill: 'red'});
+		timer.stop(); //stamata to xrono
+		
+		var button = document.createElement("button"); //dimiourgise ena button 
+		button.innerHTML = "Play again?"; //pou na rwtaei an thelei na ksanapeksei
+		var body = document.getElementsByTagName("body")[0]; //sto katw meros tis selidas
+		body.appendChild(button); 
+		button.addEventListener ("click", function() { //an o xristis patisei to koumpei
+			location.reload(); //kane reload tin selida gia na ksekinisei pali apo tin arxi
             }
 
         },
