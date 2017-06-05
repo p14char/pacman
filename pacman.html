@@ -164,6 +164,8 @@
 				totalTime = totalTime - 1;
 			}
 			else { //otan ginei 0
+				var audioGO = new Audio('assets/GameOver.mp3');
+				audioGO.play();
 				this.pacman.destroy(); //destroy pacman
 				finalScore = score + bonusScore;
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '45px Verdana', fill: 'red'}); //emfanise to gameover
