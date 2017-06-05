@@ -183,8 +183,10 @@
 				audioGO.play();
 				this.pacman.destroy(); //destroy pacman
 				finalScore = score + bonusScore;
+				timewin = totalTime;
 				this.GameOver = game.add.text(150, 220, 'GAME OVER', {fontSize: '45px Verdana', fill: 'red'}); //emfanise to gameover
 				finalScoreText = game.add.text(150, 260, 'Final score: ' + finalScore, {font: '20px Verdana', fill: 'white'}); //to sinoliko score 
+				timeWinText = game.add.text(150, 280, 'Time: ' + timewin, {font: '15px Verdana', fill: 'red'});
 				timer.stop(); //stamata to xrono
 				
 				var button = document.createElement("button"); //dimiourgise ena button 
