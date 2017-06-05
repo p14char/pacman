@@ -356,7 +356,7 @@
            
         },
 			
-	Left2Right: function() {
+	leftteleport: function() {
 		this.pacman.destroy();
 		this.pacman = this.add.sprite((22 * 16) + 8, (26 * 16) + 8, 'pacman', 0);
 		this.pacman.anchor.set(0.5);
@@ -367,7 +367,7 @@
 		this.move(Phaser.LEFT);
 	},
 	
-	Right2Left: function() {
+	rightteleport: function() {
 		this.pacman.destroy();
 		this.pacman = this.add.sprite((2 * 16) + 8, (2 * 16) + 8, 'pacman', 0);
 		this.pacman.anchor.set(0.5);
@@ -387,8 +387,8 @@
             
             this.physics.arcade.overlap(this.pacman, this.dots2, this.eatDot2, null, this);
             
-	    this.physics.arcade.overlap(this.pacman, this.teleport1, this.Left2Right, null, this);
-	    this.physics.arcade.overlap(this.pacman, this.teleport2, this.Right2Left, null, this);
+	    this.physics.arcade.overlap(this.pacman, this.teleport1, this.leftteleport, null, this);
+	    this.physics.arcade.overlap(this.pacman, this.teleport2, this.rightteleport, null, this);
 	    
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
